@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="utf-8">
+		<title>Тестовое задание</title>
+
+		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="css/style.css">
+
+	</head>
+	<body>
+
+		<div id="app">
+
+			<div class="login-button">
+				<button v-on:click="login">{{ username ? 'Вы вошли как ' + username : 'Войти' }}</button>
+			</div>
+
+			<div v-if="username" class="friends"  v-drag-and-drop:options="options">
+
+				<div class="friends-list" v-for="(value, type) in list" :type="type">
+					<div class="user" v-for="(user, i) in value" :index="i" :user="user.id">
+						<img class="user-img" :src="user.img" :alt="user.name">
+						<div class="user-name">
+							<div>{{ user.name }}</div>
+							<small>{{ user.nickname }}</small>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="export-button">
+				<button v-on:click="export2console" :disabled="list.selected.length ? false : true">Экспортировать в консоль</button>
+			</div>
+
+		</div>
+
+		<script src="https://vk.com/js/api/openapi.js?169" type="text/javascript"></script>
+		<script src="/js/vue.min.js"></script>
+		<script src="/js/vue-draggable.min.js"></script>
+		<script src="/js/app.js"></script>
+
+	</body>
+</html>
